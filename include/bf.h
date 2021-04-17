@@ -5,9 +5,9 @@
 extern "C" {
 #endif
 
-#define BF_BLOCK_SIZE 512      /* Το μέγεθος ενός block σε bytes */
-#define BF_BUFFER_SIZE 100     /* Ο μέγιστος αριθμός block που κρατάμε στην μνήμη */
-#define BF_MAX_OPEN_FILES 100  /* Ο μέγιστος αριθμός ανοικτών αρχείων */
+#define BF_BLOCK_SIZE 512    /* Το μέγεθος ενός block σε bytes */
+#define BF_BUFFER_SIZE 250    /* Ο μέγιστος αριθμός block που κρατάμε στην μνήμη */
+#define BF_MAX_OPEN_FILES 100 /* Ο μέγιστος αριθμός ανοικτών αρχείων */
 
 typedef enum BF_ErrorCode {
   BF_OK,
@@ -17,7 +17,6 @@ typedef enum BF_ErrorCode {
   BF_FILE_ALREADY_EXISTS,        /* Το αρχείο δεν μπορεί να δημιουργιθεί γιατι υπάρχει ήδη */
   BF_FULL_MEMORY_ERROR,          /* Η μνήμη έχει γεμίσει με ενεργά block */
   BF_INVALID_BLOCK_NUMBER_ERROR, /* Το block που ζητήθηκε δεν υπάρχει στο αρχείο */
-  BF_AVAILABLE_PIN_BLOCKS_ERROR, /* Το αρχειο δεν μπορεί να κλείσει επειδή υπάρχουν ενεργά Block στην μνήμη */
   BF_ERROR
 } BF_ErrorCode;
 
@@ -105,7 +104,7 @@ BF_ErrorCode BF_GetBlockCounter(const int file_desc, int *blocks_num);
  * Με τη συνάρτηση BF_AllocateBlock δεσμεύεται ένα καινούριο block για το
  * αρχείο με αναγνωριστικό αριθμό blockFile. Το νέο block δεσμεύεται πάντα
  * στο τέλος του αρχείου, οπότε ο αριθμός του block είναι
- * BF_getBlockCounter(file_desc) - 1. Το block που δεσμεύεται καρφιτσώνεται
+ * BF_getBlockCounter(...) - 1. Το block που δεσμεύεται καρφιτσώνεται
  * στην μνήμη (pin) και επιστρέφεται στην μεταβλητή block. Όταν δεν το
  * χρειαζόμαστε άλλο αυτό το block τότε πρέπει να ενημερώσουμε τον επίπεδο
  * block καλώντας την συνάρτηση BF_UnpinBlock. Σε περίπτωση επιτυχίας
@@ -149,7 +148,7 @@ void BF_PrintError(BF_ErrorCode err);
  * Η συνάρτηση BF_Close κλήνει το επίπεδο Block γράφοντας στον δίσκο όποια
  * block είχε στην μνήμη.
  */
-BF_ErrorCode BF_Close();
+void BF_Close();
 
 #ifdef __cplusplus
 }

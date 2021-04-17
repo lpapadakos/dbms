@@ -1,13 +1,15 @@
-hp:
-	@echo " Compile ht_main ...";
-	gcc -I ./include/ -L ./lib/ -Wl,-rpath,./lib/ ./examples/ht_main.c ./src/hash_file.c -lbf -o ./build/runner -O2
+main1:
+	@echo " Compile main1 ...";
+	gcc -I ./include/ -L ./lib/ -Wl,-rpath,./lib/ ./examples/main1.c ./src/AM.c ./src/BT.c -lbf -o ./build/main1
+
+main2:
+	@echo " Compile main2 ...";
+	gcc -I ./include/ -L ./lib/ -Wl,-rpath,./lib/ ./examples/main2.c ./src/AM.c ./src/BT.c -lbf -o ./build/main2
+
+main3:
+	@echo " Compile main3 ...";
+	gcc -I ./include/ -L ./lib/ -Wl,-rpath,./lib/ ./examples/main3.c ./src/AM.c ./src/BT.c -lbf -o ./build/main3
 
 bf:
 	@echo " Compile bf_main ...";
 	gcc -I ./include/ -L ./lib/ -Wl,-rpath,./lib/ ./examples/bf_main.c -lbf -o ./build/runner -O2
-
-tests:
-	@echo " Compile test mains ...";
-	gcc -I ./include/ -L ./lib/ -Wl,-rpath,./lib/ ./examples/test1.c ./src/hash_file.c -lbf -o ./build/test1 -O2
-	gcc -I ./include/ -L ./lib/ -Wl,-rpath,./lib/ ./examples/test2.c ./src/hash_file.c -lbf -o ./build/test2 -O2
-	gcc -I ./include/ -L ./lib/ -Wl,-rpath,./lib/ ./examples/test3.c ./src/hash_file.c -lbf -o ./build/test3 -O2
