@@ -105,7 +105,7 @@ BF_ErrorCode BF_GetBlockCounter(const int file_desc, int *blocks_num);
  * Με τη συνάρτηση BF_AllocateBlock δεσμεύεται ένα καινούριο block για το
  * αρχείο με αναγνωριστικό αριθμό blockFile. Το νέο block δεσμεύεται πάντα
  * στο τέλος του αρχείου, οπότε ο αριθμός του block είναι
- * BF_getBlockCounter(file_desc - 1). Το block που δεσμεύεται καρφιτσώνεται
+ * BF_getBlockCounter(file_desc) - 1. Το block που δεσμεύεται καρφιτσώνεται
  * στην μνήμη (pin) και επιστρέφεται στην μεταβλητή block. Όταν δεν το
  * χρειαζόμαστε άλλο αυτό το block τότε πρέπει να ενημερώσουμε τον επίπεδο
  * block καλώντας την συνάρτηση BF_UnpinBlock. Σε περίπτωση επιτυχίας
